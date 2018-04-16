@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.test2.Test2Mapper" >
+   
+
+    <select id="findAll" resultType="com.bean.Test"  >
+       select 
+             main.code mainCode,
+             main.code_name mainCodeName,
+             sub.code subCode,
+             sub.code_name subCodeName 
+       from box_action_main main,box_action_sub sub
+       where main.code=sub.main_code and main.code=2
+    </select>
+
+ 
+    <insert id="addSub" parameterType="com.bean.Test" >
+       INSERT INTO 
+       		box_action_sub
+       		(code,code_name,main_code)
+       	VALUES
+       		(#{subCode}, #{subCodeName},#{mainCode})
+    </insert>
+    
+    
+</mapper>
