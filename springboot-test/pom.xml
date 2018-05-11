@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>springboot-test</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Demo project for Spring Boot111</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
