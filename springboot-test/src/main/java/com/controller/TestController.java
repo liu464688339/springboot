@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSON;
 import com.bean.Test;
 import com.service.TestService;
+import com.util.LZString;
 
 @Controller
 @RequestMapping(value = "/test")
@@ -95,6 +96,4 @@ public class TestController {
 		}
 		return "success";
 	}
-	
-	
 }

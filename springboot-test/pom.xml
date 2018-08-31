@@ -62,12 +62,6 @@
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
 		<!-- mybatis end -->
-		<!-- gson -->
-		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-		</dependency>
-		<!-- gson -->
 		<dependency>
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
@@ -79,9 +73,9 @@
 			<version>1.2.44</version>
 		</dependency>
 		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-mapper-lgpl</artifactId>
-			<version>1.9.6</version>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>25.1-jre</version>
 		</dependency>
 	</dependencies>
 
