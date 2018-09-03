@@ -3,18 +3,19 @@ package com.controller;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicInteger;import org.assertj.core.internal.Numbers;
 
 public class SimpleThreadTest {
 	public static void main(String[] args) {
 		ExecutorService threadPool = Executors.newFixedThreadPool(100);
 		final AtomicInteger totalCount = new AtomicInteger();
 		for (int i = 0; i < 100; i++) {
+			final int b=i;
 			threadPool.execute(new Runnable() {
 				@Override
 				public void run() {
+					System.out.println(b);
 					System.out.println("name:" + Thread.currentThread().getName() + "+1");
-					totalCount.getAndAdd(1);
 				}
 			});
 		}
