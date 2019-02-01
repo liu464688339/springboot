@@ -3,10 +3,12 @@ package com.controller;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import com.bean.Test;
 import com.google.common.collect.BiMap;
@@ -15,15 +17,19 @@ import com.google.common.collect.HashBiMap;
 import com.google.common.collect.HashMultiset;
 import com.google.common.collect.Multiset;
 import com.google.common.collect.Multiset.Entry;
-import com.mysql.fabric.xmlrpc.base.Array;
 import com.google.common.collect.Table;
+import com.google.common.cache.CacheBuilder;
+import com.google.common.cache.CacheLoader;
+import com.google.common.cache.LoadingCache;
 
 public class GuavaTest {
 
 	public static void main(String[] args) throws Exception {
 		// BiMapTest();
 		// MultisetTest();
-		TableTest();
+		//TableTest();
+		LoadingCache<String,Test> cache=LoadingCache();
+		System.out.println(cache.get("fmClick"));
 	}
 
 	/**
@@ -116,5 +122,35 @@ public class GuavaTest {
 		byte[] items = fildeName.getBytes();
 		items[0] = (byte) ((char) items[0] - 'a' + 'A');
 		return new String(items);
+	}
+	
+	
+	/**
+	 * LoadingCache
+	 */
+	private static LoadingCache<String,Test> LoadingCache() {
+		LoadingCache<String,Test> cache= CacheBuilder.newBuilder()
+	            .maximumSize(100) // maximum 100 records can be cached
+	            .expireAfterAccess(30, TimeUnit.MINUTES) // cache will expire after 30 minutes of access
+	            .build(new CacheLoader<String,Test>(){ // build the cacheloader
+				@Override
+				public Test load(String key) throws Exception {
+					Map<String,Test> database = new HashMap<String,Test>();
+					Test t1 = new Test();
+					t1.setMainCode("01");
+					t1.setMainCodeName("fm");
+					t1.setSubCode("01");
+					t1.setSubCodeName("click");
+					Test t2 = new Test();
+					t2.setMainCode("01");
+					t2.setMainCodeName("fm");
+					t2.setSubCode("02");
+					t2.setSubCodeName("search");
+					database.put("fmClick", t1);
+					database.put("fmSearch", t2);
+					return database.get(key);
+				}							
+	            });
+		return cache;
 	}
 }

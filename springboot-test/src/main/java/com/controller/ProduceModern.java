@@ -21,7 +21,8 @@ public class ProduceModern {
 	        ExecutorService cachedThreadPool2 = Executors.newCachedThreadPool();
 	        for(int i=0;i<5;i++) {
 	        	cachedThreadPool1.execute(new Producer(queue,i));
-	        } 
+	        }
+	        Thread.sleep(3000);
 	        for(int j=0;j<10;j++) {
 	        	cachedThreadPool2.execute(new Consumer(queue,j));
 	        }         
@@ -38,7 +39,7 @@ class Producer implements Runnable {
 
     private BlockingQueue<Apple> queue;
 
-    private static AtomicInteger count = new AtomicInteger();
+    private  AtomicInteger count = new AtomicInteger();
     private String name;
 
     public Producer(BlockingQueue<Apple> queue,int num) {
@@ -72,7 +73,7 @@ class Producer implements Runnable {
 
 class Consumer implements Runnable {
     private BlockingQueue<Apple> queue;
-    private static AtomicInteger count = new AtomicInteger();
+    private AtomicInteger count = new AtomicInteger();
     private String name;
 
     public Consumer(BlockingQueue<Apple> queue,int num) {
