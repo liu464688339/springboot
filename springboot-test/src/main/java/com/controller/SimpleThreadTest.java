@@ -3,7 +3,7 @@ package com.controller;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;import org.assertj.core.internal.Numbers;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class SimpleThreadTest {
 	public static void main(String[] args) {
